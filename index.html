@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(to right, green, yellow, orange);
+        }
+
+        .box {
+            width: 550px;
+            height: 100px;
+            background-image: linear-gradient(to left, green, yellow, orange);
+            border: 4px solid white;
+            border-radius: 60px;
+            text-align: center;
+            line-height: 90px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: 58px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box" id="box">
+            YY : MM : DD : HH : SS
+        </div>
+    </div>
+
+
+
+    <script>
+        setInterval(() => {
+            var pro = new Date("may 19 2021 10:00:00");
+            var now = new Date();
+            var a = pro - now;
+            console.log(a);
+            var day = Math.floor(a / (60 * 60 * 24 * 1000));
+            console.log(day);
+            var hor = Math.floor(a % (60 * 60 * 24 * 1000) / (60 * 60 * 1000));
+            console.log(hor);
+            var min = Math.floor(a % (60 * 60 * 1000) / (60 * 1000));
+            console.log(min);
+            var sec = Math.floor(a % (60 * 1000) / (1000));
+            console.log(sec);
+            var last = "AM";
+
+            if (day <= 10) {
+                day = "0" + day;
+                console.log("new Day " + day)
+            }
+
+            if (hor >= 12) {
+                hor = hor - 12;
+                var last = "PM"
+                console.log("new hor " + hor + last)
+            }
+            if (hor < 10) {
+                hor = "0 " + hor;
+                console.log("new hor new " + hor + last)
+            }
+            if (min < 10) {
+                min = "0 " + min;
+                console.log("min" + min);
+            }
+            if (sec < 10) {
+                sec = "0 " + sec;
+                console.log("sec" + sec);
+            }
+
+            document.getElementById("box").innerHTML = day + " : " + hor + " : " + min + " : " + sec;
+        } , 1000);
+
+    </script>
+
+</body>
+
+</html>
